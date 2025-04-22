@@ -1,0 +1,165 @@
+package com.sister.smart.blonde
+
+import android.app.Activity
+import android.app.Application
+import android.database.Cursor
+import android.database.MatrixCursor
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
+import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
+/**
+ * Date：2025/4/21
+ * Describe:
+ */
+object Headband {
+    lateinit var mHeadApp: Application
+
+    var mHeadAndroidIdStr by SmartImplStr()
+
+    var versionName: String = ""
+    var appInstallTime: Long = 0L
+
+    val headActivity = arrayListOf<Activity>()
+
+    private var lastFbStr = ""
+    private fun blondeFacebook(fb: String) {
+        if (fb.isBlank()) return
+        if (lastFbStr == fb) return
+        lastFbStr = fb
+        FacebookSdk.setApplicationId(fb)
+        FacebookSdk.sdkInitialize(mHeadApp)
+        AppEventsLogger.activateApp(mHeadApp)
+    }
+
+    fun refreshHead(str: String) {
+        runCatching {
+            JSONObject(str).apply {
+                val time = optString("writer_tt")
+                splitTime(time)
+                sisterIdStr = optString("charm_id")
+                sweetIdStr = optString("blonde_id")
+                blondeFacebook(optString("playful_fb_id"))
+                AngelHelper.urlAngle = optString("generous_u")
+            }
+        }
+    }
+
+    var time1 = 60000L
+    var time2Per = 60000
+    var timeWait = 60000
+    private var showMaxHour = 60
+    private var showMaxDay = 60
+    private var clickMaxDay = 60
+    var womenNum = 99
+
+    var sisterIdStr = ""
+    var sweetIdStr = "" // 高价值优先展示
+    var isCanSisterRecord = true
+
+    private fun splitTime(time: String) {
+        if (time.contains("-")) {
+            runCatching {
+                val list = time.split("-")
+                time1 = list[0].toInt() * 1000L
+                time2Per = list[1].toInt() * 1000
+                timeWait = list[2].toInt() * 1000
+                showMaxHour = list[3].toInt()
+                showMaxDay = list[4].toInt()
+                clickMaxDay = list[5].toInt()
+                womenNum = list[6].toInt()
+            }
+        }
+    }
+
+    private var showHourNumDay by SmartImplStr()
+    private var showDayNumDay by SmartImplStr()
+    private var clickDayNumDay by SmartImplStr()
+    private var lastDayStr by SmartImplStr()
+    private var lastHourStr by SmartImplStr("0")
+
+    private var isPostLimit = false
+
+    fun isSmartLimit(post: () -> Unit): Boolean {
+        if (isCurDay()) {
+            val size1 = showHourNumDay.length
+            val size2 = showDayNumDay.length
+            val size3 = clickDayNumDay.length
+            if (size2 > showMaxDay || size3 > clickMaxDay) {
+                if (isPostLimit.not()) {
+                    isPostLimit = true
+                    post.invoke()
+                }
+                return false
+            }
+            if (size1 > showMaxHour) {
+                return false
+            }
+        }
+        return false
+    }
+
+
+    private fun isCurDay(): Boolean {
+        val day = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        if (day != lastDayStr) {
+            isPostLimit = false
+            showHourNumDay = ""
+            showDayNumDay = ""
+            clickDayNumDay = ""
+            return false
+        }
+        val time = lastHourStr.toLong()
+        if (System.currentTimeMillis() - time < 60000 * 60) {
+            showHourNumDay = ""
+            lastHourStr = System.currentTimeMillis().toString()
+        }
+        return true
+    }
+
+    var showTimeAd = 0L
+
+    @JvmStatic
+    fun showEvent() {
+        showTimeAd = System.currentTimeMillis()
+        showHourNumDay += addChar()
+        showDayNumDay += addChar()
+    }
+
+    @JvmStatic
+    fun clickAd() {
+        clickDayNumDay += addChar()
+    }
+
+    private fun addChar(): Char {
+        return ('b'..'s').random()
+    }
+
+    @JvmStatic
+    fun blondeQuery(str: String): Cursor? {
+        if (!str.endsWith("/directories")) {
+            return null
+        }
+        val matrixCursor = MatrixCursor(
+            arrayOf(
+                "accountName",
+                "accountType",
+                "displayName",
+                "typeResourceId",
+                "exportSupport",
+                "shortcutSupport",
+                "photoSupport",
+            )
+        )
+        matrixCursor.addRow(
+            arrayOf<Any>(
+                "ACCOUNT_NAME1112", "ACCOUNT_TYPE1112", "DISPLAY_NAME1112", 0, "1".toInt(), 1, 1
+            )
+        )
+        return matrixCursor
+    }
+
+}

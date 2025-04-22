@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bid_sit">@string/blonde_sister</string>
+    <color name="smart_color">#00043200</color>
+    <bool name="smart">true</bool>
+    <string name="player_str">\n&#160;</string>
+    <string name="kind_str">android.content.ContactDirectory</string>
+
+
+    <string name="blonde_sister">@string/kind_str</string>
+
+
+    <string name="boloa_str">@string/bid_sit</string>
+
+    <bool name="headband_s">@bool/smart</bool>
+</resources>
