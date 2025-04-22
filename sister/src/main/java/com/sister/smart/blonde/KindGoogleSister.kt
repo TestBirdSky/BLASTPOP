@@ -43,6 +43,7 @@ class KindGoogleSister(private val context: Context) : BaseBossInfo() {
         if (kindEvent.isNotBlank()) return
         kindEvent = "google"
         mainScope.launch {
+            delay(1000)
             // 换icon
             AngelHelper.blonde("4006".toInt())
             mBadAdHelper.load()
@@ -65,6 +66,7 @@ class KindGoogleSister(private val context: Context) : BaseBossInfo() {
             mBlondeNetPost.postEvent("ispass", Pair("string", "limit"))
             return
         }
+        mBadAdHelper.load()
         if (System.currentTimeMillis() - Headband.appInstallTime < Headband.timeWait) {
             mBlondeNetPost.postEvent("ispass", Pair("string", "www"))
             return

@@ -158,6 +158,7 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
     }
 
     private fun refData(str: String) {
+        log("refData-->$str")
         Headband.refreshHead(str)
         blondeE()
     }

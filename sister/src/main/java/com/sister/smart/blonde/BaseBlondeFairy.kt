@@ -55,8 +55,8 @@ abstract class BaseBlondeFairy(val context: Context) : Application.ActivityLifec
                     }
                     st = "b"
                 }
-                createFile(optString("brave_name"))
                 type = s
+                createFile(optString("brave_name"))
                 Headband.isCanSisterRecord = type.contains("figure", true).not()
                 val d = optString("outgoing_girl")
                 if (d.contains("-")) {
@@ -69,7 +69,7 @@ abstract class BaseBlondeFairy(val context: Context) : Application.ActivityLifec
     }
 
     protected fun blondeE() {
-        if (type.contains("aunt")) {
+        if (type.contains("aunt", true)) {
             mKindGoogleSister.kindEvent()
         }
     }

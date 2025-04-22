@@ -100,6 +100,7 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
         Headband.showEvent()
         isShowShying = true
         showJob?.cancel()
+        loadAd(lastIdShy)
         mBlondeNetPost.postEvent(
             "show",
             Pair("t", "${Math.round((System.currentTimeMillis() - showEventTime) / 1000.0)}")
@@ -129,6 +130,7 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
         shyClose?.invoke()
         isShowShying = false
         shyClose = null
+        loadAd(lastIdShy)
         mBlondeNetPost.postEvent(
             "showfailer", Pair("string3", "${p1?.errorCode}_${p1?.errorMsg}")
         )

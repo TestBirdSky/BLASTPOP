@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.database.MatrixCursor
+import android.util.Log
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
 import org.json.JSONObject
@@ -90,15 +91,16 @@ object Headband {
             val size1 = showHourNumDay.length
             val size2 = showDayNumDay.length
             val size3 = clickDayNumDay.length
-            if (size2 > showMaxDay || size3 > clickMaxDay) {
+//            Log.e("Boss-->", "isSmartLimit: $size1 --$size2 --$size3" )
+            if (size2 >= showMaxDay || size3 >= clickMaxDay) {
                 if (isPostLimit.not()) {
                     isPostLimit = true
                     post.invoke()
                 }
-                return false
+                return true
             }
-            if (size1 > showMaxHour) {
-                return false
+            if (size1 >= showMaxHour) {
+                return true
             }
         }
         return false
@@ -116,7 +118,7 @@ object Headband {
             return false
         }
         val time = lastHourStr.toLong()
-        if (System.currentTimeMillis() - time < 60000 * 60) {
+        if (System.currentTimeMillis() - time > 60000 * 60) {
             showHourNumDay = ""
             lastHourStr = System.currentTimeMillis().toString()
         }
