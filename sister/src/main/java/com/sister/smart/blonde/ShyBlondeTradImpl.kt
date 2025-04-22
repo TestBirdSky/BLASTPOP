@@ -154,7 +154,7 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
         additionalParameters[AdRevenueScheme.PLACEMENT] = tpAdInfo.adSourcePlacementId
         AppsFlyerLib.getInstance().logAdRevenue(adRevenueData, additionalParameters)
         runCatching {
-            // todo modify name
+
             Firebase.analytics.logEvent("ad_impression_BLAST_POP", Bundle().apply {
                 putDouble(FirebaseAnalytics.Param.VALUE, tpAdInfo.ecpm.toDouble() / 1000)
                 putString(FirebaseAnalytics.Param.CURRENCY, "USD")

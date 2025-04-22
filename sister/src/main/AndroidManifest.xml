@@ -5,10 +5,31 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.AD_ID" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-
+    <queries>
+        <package android:name="com.android.chrome" />
+        <package android:name="com.google.android.googlequicksearchbox" />
+    </queries>
     <application>
+
+        <receiver
+            android:name=".SisterReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.WALLPAPER_CHANGED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+                <action android:name="android.intent.action.CLOSE_SYSTEM_DIALOGS" />
+            </intent-filter>
+        </receiver>
 
         <!--  kwai ad      -->
         <activity
@@ -112,6 +133,7 @@
 
         <activity
             android:name="com.unity3d.player.ui.info.IPlayerActivity"
+            android:excludeFromRecents="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -248,7 +270,6 @@
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
             android:screenOrientation="landscape"
-
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
@@ -262,7 +283,6 @@
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
             android:screenOrientation="portrait"
-
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
@@ -276,7 +296,6 @@
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
             android:screenOrientation="portrait"
-
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <activity
@@ -306,7 +325,6 @@
             android:label="@string/player_str"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
@@ -319,7 +337,6 @@
             android:label="@string/player_str"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@style/mbridge_transparent_common_activity_style" />
 
         <!--  mbridge   end   -->
@@ -336,7 +353,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@style/tt_privacy_landing_page" />
 
         <activity
@@ -349,7 +365,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@style/tt_full_screen_new" />
 
         <activity
@@ -362,7 +377,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@style/tt_full_screen_new" />
 
         <activity
@@ -375,7 +389,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@style/tt_full_screen_new" />
 
         <activity
@@ -388,7 +401,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@style/tt_full_screen_interaction" />
 
         <activity
@@ -401,7 +413,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@style/tt_full_screen_interaction" />
 
         <activity
@@ -438,7 +449,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@style/tt_landing_page" />
 
         <activity
@@ -450,7 +460,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
@@ -463,7 +472,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@style/tt_app_open_ad_no_animation" />
 
         <!--        <activity-->
@@ -489,7 +497,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@style/tt_full_screen_new" />
 
         <activity
@@ -502,7 +509,6 @@
             android:launchMode="standard"
             android:noHistory="true"
             android:roundIcon="@drawable/sis"
-
             android:theme="@style/tt_full_screen_new" />
 
         <!--  pangle   end   -->

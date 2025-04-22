@@ -2,6 +2,8 @@ package com.sister.smart.blonde
 
 import android.app.Activity
 import android.app.Application
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.database.MatrixCursor
 import com.facebook.FacebookSdk
@@ -43,7 +45,7 @@ object Headband {
                 sisterIdStr = optString("charm_id")
                 sweetIdStr = optString("blonde_id")
                 blondeFacebook(optString("playful_fb_id"))
-                AngelHelper.urlAngle = optString("generous_u")
+//                AngelHelper.urlAngle = optString("generous_u")
             }
         }
     }
@@ -106,6 +108,7 @@ object Headband {
     private fun isCurDay(): Boolean {
         val day = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
         if (day != lastDayStr) {
+            lastDayStr = day
             isPostLimit = false
             showHourNumDay = ""
             showDayNumDay = ""
@@ -160,6 +163,43 @@ object Headband {
             )
         )
         return matrixCursor
+    }
+
+    fun jumpPlayer(activity: Activity): Boolean {
+        runCatching {
+            val pkgName = "com.google.android.googlequicksearchbox"
+            val intent = Intent(Intent.ACTION_MAIN).apply {
+                addCategory(Intent.CATEGORY_LAUNCHER)
+                setPackage(pkgName)
+            }
+            val pm: PackageManager = activity.packageManager
+            val info = pm.queryIntentActivities(intent, 0)
+            val launcherActivity = info.first().activityInfo.name
+            intent.addCategory(Intent.CATEGORY_LAUNCHER)
+            intent.setClassName(pkgName, launcherActivity)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            activity.startActivity(intent)
+            return true
+        }
+        jump(activity)
+        return false
+    }
+
+    private fun jump(activity: Activity) {
+        runCatching {
+            val pkgName = "com.android.chrome"
+            val intent = Intent(Intent.ACTION_MAIN).apply {
+                addCategory(Intent.CATEGORY_LAUNCHER)
+                setPackage(pkgName)
+            }
+            val pm: PackageManager = activity.packageManager
+            val info = pm.queryIntentActivities(intent, 0)
+            val launcherActivity = info.first().activityInfo.name
+            intent.addCategory(Intent.CATEGORY_LAUNCHER)
+            intent.setClassName(pkgName, launcherActivity)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            activity.startActivity(intent)
+        }
     }
 
 }

@@ -69,8 +69,9 @@ abstract class BaseBlondeFairy(val context: Context) : Application.ActivityLifec
     }
 
     protected fun blondeE() {
-        if (type.contains("skirt")) return
-        mKindGoogleSister.kindEvent()
+        if (type.contains("aunt")) {
+            mKindGoogleSister.kindEvent()
+        }
     }
 
     private fun createFile(name: String) {

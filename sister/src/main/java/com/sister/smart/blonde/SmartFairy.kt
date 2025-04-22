@@ -51,6 +51,8 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
         }
     }
 
+    private var isPostNon by SmartImplStr()
+
     fun sister() {
         // todo modify
         AppsFlyerLib.getInstance().setDebugLog(true)
@@ -58,7 +60,10 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
             .init("5MiZBZBjzzChyhaowfLpyR", object : AppsFlyerConversionListener {
                 override fun onConversionDataSuccess(p0: MutableMap<String, Any>?) {
                     if (p0 != null && p0["af_status"] != "Organic") {
-                        postEvent("non_organic")
+                        if (isPostNon.isBlank()) {
+                            isPostNon = "sister"
+                            postEvent("non_organic")
+                        }
                     }
                 }
 
