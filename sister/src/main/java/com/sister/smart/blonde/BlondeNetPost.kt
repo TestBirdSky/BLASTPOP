@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import org.json.JSONObject
 import java.io.IOException
 
 /**
@@ -24,9 +25,17 @@ class BlondeNetPost : BaseBossInfo() {
     private val okHttpClient = OkHttpClient()
     private var refSisterStatus by SmartImplStr()
 
-    fun postNetAd(p0: TPAdInfo,tag:String) {
+    fun postNetAd(tp: TPAdInfo, tag: String) {
         val js = commonJSONSister().apply {
-
+            put("last", JSONObject().apply {
+                put("forth", tp.ecpm.toDouble() * 1000)
+                put("ta", "USD")
+                put("thematic", tp.adSourceName)
+                put("huston", "tradplus")
+                put("petal", tp.adSourcePlacementId)
+                put("twirl", "interstitial$tag")
+                put("compost", tp.format)
+            })
         }.toString()
         blondeNet(sisterReq(js), 2)
     }
@@ -34,7 +43,18 @@ class BlondeNetPost : BaseBossInfo() {
     fun postIns(refStr: String) {
         if (refSisterStatus.isNotBlank()) return
         val js = commonJSONSister().apply {
-
+            put("snoopy", JSONObject().apply {
+                put("betel", "")
+                put("toshiba", "")
+                put("ova", "secure")
+                put("fund", refStr)
+                put("baroness", 0L)
+                put("manatee", 0L)
+                put("insist", 0L)
+                put("schaefer", 0L)
+                put("mile", Headband.appInstallTime)
+                put("james", 0L)
+            })
         }.toString()
         blondeNet(sisterReq(js), 31, success = {
             refSisterStatus = "girl"
@@ -54,9 +74,12 @@ class BlondeNetPost : BaseBossInfo() {
             log("cancel post $name")
             return
         }
-        log(" post $name")
+        log(" post $name --$pair")
         val js = commonJSONSister().apply {
-
+            put("impasse", name)
+            pair?.let {
+                put("${it.first}&militia", it.second)
+            }
         }.toString()
         blondeNet(sisterReq(js), 5)
     }

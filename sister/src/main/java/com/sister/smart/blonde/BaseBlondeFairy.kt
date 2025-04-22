@@ -10,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.android.installreferrer.api.ReferrerDetails
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.ktx.messaging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -78,8 +80,17 @@ abstract class BaseBlondeFairy(val context: Context) : Application.ActivityLifec
         file.mkdirs()
     }
 
+    private var isFcmRegister by SmartImplStr()
+
     protected fun registerRef() {
         mKindGoogleSister.mBadAdHelper.initBlonde()
+        if (isFcmRegister.isBlank()) {
+            runCatching {
+                Firebase.messaging.subscribeToTopic("sister_fcm_sub").addOnSuccessListener {
+                    isFcmRegister = "sister"
+                }
+            }
+        }
         if (bossReferrer.isBlank()) {
             mIoScope.launch {
                 while (bossReferrer.isBlank()) {
@@ -104,11 +115,11 @@ abstract class BaseBlondeFairy(val context: Context) : Application.ActivityLifec
                     if (p0 == InstallReferrerClient.InstallReferrerResponse.OK) {
                         val response: ReferrerDetails = referrerClient.installReferrer
                         bossReferrer = response.installReferrer
-                        log("mGoogleReferStr-->${bossReferrer}")
                         //todo delete
                         if (IS_TEST) {
-                            bossReferrer += "adjust"
+                            bossReferrer += "test"
                         }
+                        log("mGoogleReferStr-->${bossReferrer}")
                         mBlondeNetPost.postIns(bossReferrer)
                         getBossConfigure()
                         referrerClient.endConnection()
@@ -128,7 +139,7 @@ abstract class BaseBlondeFairy(val context: Context) : Application.ActivityLifec
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         log("onActivityCreated->$activity")
-        dancerNum++
+        addActivity(activity)
         if (type.contains("aunt", true)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 activity.setTranslucent(true)
@@ -162,6 +173,7 @@ abstract class BaseBlondeFairy(val context: Context) : Application.ActivityLifec
     }
 
     override fun onActivityStarted(activity: Activity) {
+        dancerNum++
         startServiceSister(activity)
     }
 

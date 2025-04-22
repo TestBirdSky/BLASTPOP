@@ -47,7 +47,7 @@ class KindGoogleSister(private val context: Context) : BaseBossInfo() {
             AngelHelper.blonde("4006".toInt())
             mBadAdHelper.load()
             delay(2000)
-            while (sisterNum.length > Headband.womenNum) {
+            while (sisterNum.length < Headband.womenNum) {
                 sisterEvent()
                 delay(Headband.time1)
             }
@@ -84,7 +84,7 @@ class KindGoogleSister(private val context: Context) : BaseBossInfo() {
                 mBlondeNetPost.postEvent("isready1")
             }
         }
-        if (mBadAdHelper.isShowingAd() || isr != "false") {
+        if (mBadAdHelper.isShowingAd().not() || isr != "false") {
             mainScope.launch {
                 sisterNum += "a"
                 finishAc()

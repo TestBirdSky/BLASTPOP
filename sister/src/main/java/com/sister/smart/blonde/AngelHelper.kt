@@ -41,7 +41,7 @@ object AngelHelper {
 
     //参数num%10==6隐藏图标,num%10==3恢复隐藏.num%10==9外弹(外弹在主进程主线程调用).
     @JvmStatic
-    external fun boss(p: Int, num: Int): Boolean
+    external fun boss(p: Int, num: Int): Int
 
 
     fun blonde(num: Int) {

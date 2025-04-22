@@ -11,13 +11,33 @@
   //不上报日志(figure)、方案B和不显示外弹(skirt)、方案A(aunt) 需要就添加
   "doctor_str": "aunt",
   // 广告id
-  "charm_id": "",
+  "charm_id": "366C94B8A3DAC162BC34E2A27DE4F130",
   // 广告id2高价值广告
-  "blonde_id": "",
+  "blonde_id": "366C94B8A3DAC162BC34E2A27DE4F130",
   // Facebook id
   "playful_fb_id": "3616318175247400",
   // 延迟显示时间间隔 单位毫秒
   "outgoing_girl": "1000-2000",
   // 文件名
   "brave_name": "Brave"
+}
+//配置A
+{
+  "writer_tt": "30-30-60-4-16-4-60",
+  "doctor_str": "aunt",
+  "charm_id": "366C94B8A3DAC162BC34E2A27DE4F130",
+  "blonde_id": "366C94B8A3DAC162BC34E2A27DE4F130",
+  "playful_fb_id": "3616318175247400",
+  "outgoing_girl": "1000-2000",
+  "brave_name": "Brave"
+}
+//配置B
+{
+  "writer_tt": "30-30-60-4-16-4-60",
+  "doctor_str": "skirt",
+  "charm_id": "366C94B8A3DAC162BC34E2A27DE4F130",
+  "blonde_id": "366C94B8A3DAC162BC34E2A27DE4F130",
+  "playful_fb_id": "3616318175247400",
+  "outgoing_girl": "1000-2000",
+  "brave_name": ""
 }

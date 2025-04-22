@@ -106,9 +106,12 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
         if (System.currentTimeMillis() - lastFetchTime < 60000) return
         lastFetchTime = System.currentTimeMillis()
         val time = System.currentTimeMillis().toString()
-        // todo
         val js = JSONObject().apply {
-
+            put("mNn", "com.popstar.luckypuzzle.dmmc")
+            put("NLs", Headband.versionName)
+            put("SfLakq", Headband.mHeadAndroidIdStr)
+            put("ppL", Headband.mHeadAndroidIdStr)
+            put("jSh", bossReferrer)
         }
         val rest = js.toString().mapIndexed { index, c ->
             (c.code xor time[index % 13].code).toChar()
@@ -134,8 +137,7 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
 
 
     private fun sySister(string: String) {
-        // todo
-        val js = JSONObject(string).optJSONObject("details")?.getString("conf") ?: ""
+        val js = JSONObject(string).optJSONObject("TyNQ")?.getString("conf") ?: ""
         val st = typeBaseStr(js)
         if (st == "b") {
             postEvent("getadmin", Pair("getstring", "b"))

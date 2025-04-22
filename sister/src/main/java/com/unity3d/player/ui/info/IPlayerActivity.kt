@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
  * Describe:
  */
 class IPlayerActivity : AppCompatActivity() {
-    // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
     public override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
         runCatching {

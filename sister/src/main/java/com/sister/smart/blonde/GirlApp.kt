@@ -27,6 +27,8 @@ abstract class GirlApp : Application() {
         }
         if (isProgress(this)) {
             System.loadLibrary("smart")
+            MMKV.initialize(this)
+            mGirlMMKV = MMKV.defaultMMKV()
             Headband.mHeadApp = this
             AngelHelper.sisterInit(this)
         }

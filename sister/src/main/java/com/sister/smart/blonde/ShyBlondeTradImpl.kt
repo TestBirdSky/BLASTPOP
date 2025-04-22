@@ -105,7 +105,7 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
             Pair("t", "${Math.round((System.currentTimeMillis() - showEventTime) / 1000.0)}")
         )
         p0?.let {
-            mBlondeNetPost.postNetAd(it, tag)
+            mBlondeNetPost.postNetAd(it, if (tag.isBlank()) "1" else "2")
             postTP(it)
             runCatching { // fb purchase
                 AppEventsLogger.newLogger(context).logPurchase(
@@ -155,7 +155,7 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
         AppsFlyerLib.getInstance().logAdRevenue(adRevenueData, additionalParameters)
         runCatching {
             // todo modify name
-            Firebase.analytics.logEvent("ss", Bundle().apply {
+            Firebase.analytics.logEvent("ad_impression_BLAST_POP", Bundle().apply {
                 putDouble(FirebaseAnalytics.Param.VALUE, tpAdInfo.ecpm.toDouble() / 1000)
                 putString(FirebaseAnalytics.Param.CURRENCY, "USD")
             })
