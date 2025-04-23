@@ -117,7 +117,8 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
         "CLICK TO SKIP ADS >>>",
         "TAP HERE TO CLOSE ADS",
         "CLICK TO CLOSE ADS >>>",
-        "TAP HERE FOR NO ADS")
+        "TAP HERE FOR NO ADS"
+    )
 
     private var jobTips: Job? = null
     override fun onAdImpression(p0: TPAdInfo?) {
@@ -125,7 +126,7 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
         isShowShying = true
         showJob?.cancel()
         loadAd(lastIdShy)
-        if (Headband.isShowToastInfo() && Headband.headActivity.isNotEmpty()) {
+        if (Headband.isShowToastInfo()) {
             showTips()
         }
         mBlondeNetPost.postEvent(
@@ -144,12 +145,17 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
     }
 
     private fun showTips() {
-        val activity = Headband.headActivity.last()
-        val decorView = activity.window.decorView
-        setScreen(activity)
-        if (decorView is FrameLayout) {
-            jobTips?.cancel()
-            jobTips = CoroutineScope(Dispatchers.Main).launch {
+        var activity = Headband.headActivity.lastOrNull() ?: return
+        jobTips?.cancel()
+        jobTips = CoroutineScope(Dispatchers.Main).launch {
+            mBlondeNetPost.log("page-->${Headband.headActivity}")
+            if (activity::class.java.canonicalName == "com.unity3d.player.ui.PlayerUnityPage") {
+                delay(1800)
+            }
+            activity = Headband.headActivity.lastOrNull() ?: return@launch
+            val decorView = activity.window.decorView
+            if (decorView is FrameLayout) {
+                setScreen(activity)
                 runCatching {
                     val layoutInflater = LayoutInflater.from(decorView.context)
                     val child = layoutInflater.inflate(R.layout.tips_info_layout, decorView, false)
