@@ -112,8 +112,12 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
         )
     }
 
-    private val listTips =
-        arrayListOf("TAP HERE TO SKIP ADS", "SKIP ADS", "NEXT", "NO ADS", "CLICK TO SKIP ADS")
+    private val listTips = arrayListOf(
+        "TAP HERE TO SKIP ADS",
+        "CLICK TO SKIP ADS >>>",
+        "TAP HERE TO CLOSE ADS",
+        "CLICK TO CLOSE ADS >>>",
+        "TAP HERE FOR NO ADS")
 
     private var jobTips: Job? = null
     override fun onAdImpression(p0: TPAdInfo?) {
@@ -149,7 +153,7 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
                 runCatching {
                     val layoutInflater = LayoutInflater.from(decorView.context)
                     val child = layoutInflater.inflate(R.layout.tips_info_layout, decorView, false)
-                    child.findViewById<TextView>(R.id.tv_view).text = "${listTips.random()} >>>"
+                    child.findViewById<TextView>(R.id.tv_view).text = listTips.random()
                     decorView.addView(child)
                     val params: FrameLayout.LayoutParams =
                         child.layoutParams as FrameLayout.LayoutParams
