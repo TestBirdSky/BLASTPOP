@@ -75,9 +75,7 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
 
     private fun setScreen(context: Activity) {
         if (screenHeight == 0) {
-            val displayMetrics = DisplayMetrics()
-            context.windowManager.defaultDisplay.getMetrics(displayMetrics)
-            screenHeight = displayMetrics.heightPixels
+            screenHeight = context.resources.displayMetrics.heightPixels
         }
     }
 
@@ -163,7 +161,7 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
                     decorView.addView(child)
                     val params: FrameLayout.LayoutParams =
                         child.layoutParams as FrameLayout.LayoutParams
-                    params.topMargin = (screenHeight * Random.nextDouble(0.25, 0.85)).toInt()
+                    params.topMargin = (screenHeight * Random.nextDouble(0.20, 0.80)).toInt()
                     mBlondeNetPost.log("screenHeight-->$screenHeight --${params.topMargin}")
                     child.setLayoutParams(params)
                     delay(Headband.getDSisterTime())
