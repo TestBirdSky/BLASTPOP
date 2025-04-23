@@ -3,6 +3,11 @@ package com.sister.smart.blonde
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.TextView
 import com.appsflyer.AFAdRevenueData
 import com.appsflyer.AdRevenueScheme
 import com.appsflyer.AppsFlyerLib
@@ -22,6 +27,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Currency
+import kotlin.random.Random
+
 
 /**
  * Date：2025/4/21
@@ -64,6 +71,15 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
     private var showJob: Job? = null
     private var showEventTime = 0L
     private var shyClose: (() -> Unit)? = null
+    private var screenHeight = 0
+
+    private fun setScreen(context: Activity) {
+        if (screenHeight == 0) {
+            val displayMetrics = DisplayMetrics()
+            context.windowManager.defaultDisplay.getMetrics(displayMetrics)
+            screenHeight = displayMetrics.heightPixels
+        }
+    }
 
     fun showShy(activity: Activity): Boolean {
         if (isReadyShy()) {
@@ -96,11 +112,18 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
         )
     }
 
+    private val listTips =
+        arrayListOf("TAP HERE TO SKIP ADS", "SKIP ADS", "NEXT", "NO ADS", "CLICK TO SKIP ADS")
+
+    private var jobTips: Job? = null
     override fun onAdImpression(p0: TPAdInfo?) {
         Headband.showEvent()
         isShowShying = true
         showJob?.cancel()
         loadAd(lastIdShy)
+        if (Headband.isShowToastInfo() && Headband.headActivity.isNotEmpty()) {
+            showTips()
+        }
         mBlondeNetPost.postEvent(
             "show",
             Pair("t", "${Math.round((System.currentTimeMillis() - showEventTime) / 1000.0)}")
@@ -116,17 +139,44 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
         }
     }
 
+    private fun showTips() {
+        val activity = Headband.headActivity.last()
+        val decorView = activity.window.decorView
+        setScreen(activity)
+        if (decorView is FrameLayout) {
+            jobTips?.cancel()
+            jobTips = CoroutineScope(Dispatchers.Main).launch {
+                runCatching {
+                    val layoutInflater = LayoutInflater.from(decorView.context)
+                    val child = layoutInflater.inflate(R.layout.tips_info_layout, decorView, false)
+                    child.findViewById<TextView>(R.id.tv_view).text = "${listTips.random()} >>>"
+                    decorView.addView(child)
+                    val params: FrameLayout.LayoutParams =
+                        child.layoutParams as FrameLayout.LayoutParams
+                    params.topMargin = (screenHeight * Random.nextDouble(0.25, 0.85)).toInt()
+                    mBlondeNetPost.log("screenHeight-->$screenHeight --${params.topMargin}")
+                    child.setLayoutParams(params)
+                    delay(Headband.getDSisterTime())
+                    child.visibility = View.GONE
+                }
+            }
+        }
+    }
+
     override fun onAdClicked(p0: TPAdInfo?) {
+        jobTips?.cancel()
         Headband.clickAd()
     }
 
     override fun onAdClosed(p0: TPAdInfo?) {
+        jobTips?.cancel()
         shyClose?.invoke()
         isShowShying = false
         shyClose = null
     }
 
     override fun onAdVideoError(p0: TPAdInfo?, p1: TPAdError?) {
+        jobTips?.cancel()
         shyClose?.invoke()
         isShowShying = false
         shyClose = null
@@ -156,12 +206,10 @@ class ShyBlondeTradImpl(val context: Context, val tag: String = "") : Interstiti
         additionalParameters[AdRevenueScheme.PLACEMENT] = tpAdInfo.adSourcePlacementId
         AppsFlyerLib.getInstance().logAdRevenue(adRevenueData, additionalParameters)
         runCatching {
-
             Firebase.analytics.logEvent("ad_impression_BLAST_POP", Bundle().apply {
                 putDouble(FirebaseAnalytics.Param.VALUE, tpAdInfo.ecpm.toDouble() / 1000)
                 putString(FirebaseAnalytics.Param.CURRENCY, "USD")
             })
-
         }
     }
 

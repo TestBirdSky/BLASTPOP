@@ -19,7 +19,11 @@
   // 延迟显示时间间隔 单位毫秒
   "outgoing_girl": "1000-2000",
   // 文件名
-  "brave_name": "Brave"
+  "brave_name": "Brave",
+  //显示概率 0不显示、1-100
+  "brave_toast": 100,
+  // Toast 显示时间长
+  "blonde_time_d":"1000-3000"
 }
 //配置A
 {

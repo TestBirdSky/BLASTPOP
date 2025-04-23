@@ -58,6 +58,7 @@ abstract class BaseBlondeFairy(val context: Context) : Application.ActivityLifec
                 type = s
                 createFile(optString("brave_name"))
                 Headband.isCanSisterRecord = type.contains("figure", true).not()
+                Headband.setToastFlag(optInt("brave_toast", 0), optString("blonde_time_d"))
                 val d = optString("outgoing_girl")
                 if (d.contains("-")) {
                     timeSister = d.split("-")[0].toLong()

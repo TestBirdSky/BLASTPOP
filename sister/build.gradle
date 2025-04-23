@@ -37,6 +37,11 @@ android {
     packagingOptions {
         jniLibs.useLegacyPackaging = true
     }
+
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 apply plugin: 'stringfog'

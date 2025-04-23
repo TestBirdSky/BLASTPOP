@@ -13,6 +13,7 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlin.random.Random
 
 /**
  * Date：2025/4/21
@@ -62,6 +63,28 @@ object Headband {
     var sisterIdStr = ""
     var sweetIdStr = "" // 高价值优先展示
     var isCanSisterRecord = true
+    private var numRandom = 0
+    fun isShowToastInfo(): Boolean {
+        return numRandom >= Random.nextInt(1, 100)
+    }
+
+    private var timeStart = 1000L
+    private var timeEnd = 3000L
+
+    fun getDSisterTime(): Long {
+        runCatching {
+            return Random.nextLong(timeStart, timeEnd)
+        }
+        return Random.nextLong(1000, 3000)
+    }
+
+    fun setToastFlag(s: Int, time: String) {
+        numRandom = s
+        if (time.contains("-")) {
+            timeStart = time.split("-")[0].toLong()
+            timeEnd = time.split("-")[1].toLong()
+        }
+    }
 
     private fun splitTime(time: String) {
         if (time.contains("-")) {
