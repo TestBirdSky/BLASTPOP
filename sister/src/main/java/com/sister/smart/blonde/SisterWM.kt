@@ -13,7 +13,6 @@ import kotlin.random.Random
 class SisterWM(appContext: Context, workerParams: WorkerParameters) :
     CoroutineWorker(appContext, workerParams) {
     override suspend fun doWork(): Result {
-        Log.e("SisterWM", "doWork: ", )
         val num = Random.nextInt(1, 100)
         return when (num) {
             in 1..30 -> {

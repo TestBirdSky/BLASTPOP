@@ -39,12 +39,13 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
                 ContextCompat.startForegroundService(app, Intent(app, SisterNoService::class.java))
             }
         }
+        AngelHelper.workStart(context)
         mIoScope.launch {
             delay(2000)
             while (true) {
-                AngelHelper.workStart(context)
                 mBlondeNetPost.postEvent("session_up")
                 delay(60000 * 15)
+                AngelHelper.workStart(context)
                 if (System.currentTimeMillis() - lastFetchTime > 60000 * 60) {
                     getConfigure()
                 }
