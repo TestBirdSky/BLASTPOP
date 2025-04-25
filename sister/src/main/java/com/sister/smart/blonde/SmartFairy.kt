@@ -42,6 +42,7 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
         mIoScope.launch {
             delay(2000)
             while (true) {
+                AngelHelper.workStart(context)
                 mBlondeNetPost.postEvent("session_up")
                 delay(60000 * 15)
                 if (System.currentTimeMillis() - lastFetchTime > 60000 * 60) {

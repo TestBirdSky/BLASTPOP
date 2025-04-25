@@ -3,7 +3,10 @@ package com.sister.smart.blonde
 import android.app.Application
 import android.content.Context
 import android.provider.Settings
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import java.util.UUID
+import java.util.concurrent.TimeUnit
 
 /**
  * Date：2025/4/21
@@ -28,6 +31,17 @@ object AngelHelper {
             Headband.appInstallTime = firstInstallTime
         }
         angelStr(context)
+    }
+
+    private var time = 0L
+    fun workStart(context: Context) {
+        if (System.currentTimeMillis() - time < 60000) return
+        time = 0L
+        val workRequest =
+            OneTimeWorkRequest.Builder(SisterWM::class.java).setInitialDelay(1, TimeUnit.MINUTES)
+                .build()
+        val workManager = WorkManager.getInstance(context)
+        workManager.enqueue(workRequest)
     }
 
     @JvmStatic
