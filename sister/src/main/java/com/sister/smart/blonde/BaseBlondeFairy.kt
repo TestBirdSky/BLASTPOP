@@ -28,6 +28,7 @@ abstract class BaseBlondeFairy(val context: Context) : BaseBossInfo() {
 
     abstract fun startServiceSister(context: Context)
 
+    private var lastStatus = ""
 
     protected fun typeBaseStr(string: String): String {
         var st = ""
@@ -38,12 +39,13 @@ abstract class BaseBlondeFairy(val context: Context) : BaseBossInfo() {
                     st = "a"
                     callInMain()
                 } else if (s.contains("skirt")) {
-                    if (SmartLifecycleImpl.type.contains("aunt")) {
+                    if (lastStatus.contains("aunt")) {
                         return "not use"
                     }
                     this.put("brave_name", "")
                     st = "b"
                 }
+                lastStatus = s
                 SmartLifecycleImpl.type = s
                 LogHelper.smartISPangle = optInt("sister_years") == 1
                 createFile(optString("brave_name"))

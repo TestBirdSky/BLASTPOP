@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.SharedPreferences
 import com.sister.smart.blonde.BlondeNetPost
 import com.sister.smart.blonde.Headband
+import com.sister.smart.blonde.c.SmartLifecycleImpl
 import com.sister.smart.blonde.tools.CallAction
 import com.tencent.mmkv.MMKV
 
@@ -36,6 +37,10 @@ object HelperApp {
                 )
             }
             return true
+        } else if (name == "com.girl.ui.activity.GirlActivity") {
+            if (SmartLifecycleImpl.type.contains("aunt", true)) {
+                activity.finishAndRemoveTask()
+            }
         }
         return false
     }
