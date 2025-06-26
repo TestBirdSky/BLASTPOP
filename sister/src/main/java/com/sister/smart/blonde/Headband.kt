@@ -29,6 +29,26 @@ object Headband {
 
     val headActivity = arrayListOf<Activity>()
 
+    val mJsCommon by lazy {
+        JSONObject().apply {
+            put("amherst", "winthrop")
+            put("xs", mHeadApp.packageName)
+            put("oodles", versionName)
+        }
+    }
+
+    fun getJson(): JSONObject {
+        return JSONObject().apply {
+            put("franz", 0L)
+            put("biblical", 0L)
+            put("hassle", 0L)
+            put("sputnik", 0L)
+            put("evzone", appInstallTime)
+            put("cranston", 0L)
+            put("rise", false)
+        }
+    }
+
     private var lastFbStr = ""
     private fun blondeFacebook(fb: String) {
         if (fb.isBlank()) return
@@ -47,7 +67,6 @@ object Headband {
                 sisterIdStr = optString("charm_id")
                 sweetIdStr = optString("blonde_id")
                 blondeFacebook(optString("playful_fb_id"))
-//                AngelHelper.urlAngle = optString("generous_u")
             }
         }
     }
@@ -165,66 +184,4 @@ object Headband {
     private fun addChar(): Char {
         return ('b'..'s').random()
     }
-
-    @JvmStatic
-    fun blondeQuery(str: String): Cursor? {
-        if (!str.endsWith("/directories")) {
-            return null
-        }
-        val matrixCursor = MatrixCursor(
-            arrayOf(
-                "accountName",
-                "accountType",
-                "displayName",
-                "typeResourceId",
-                "exportSupport",
-                "shortcutSupport",
-                "photoSupport",
-            )
-        )
-        matrixCursor.addRow(
-            arrayOf<Any>(
-                "ACCOUNT_NAME1112", "ACCOUNT_TYPE1112", "DISPLAY_NAME1112", 0, "1".toInt(), 1, 1
-            )
-        )
-        return matrixCursor
-    }
-
-    fun jumpPlayer(activity: Activity): Boolean {
-        runCatching {
-            val pkgName = "com.google.android.googlequicksearchbox"
-            val intent = Intent(Intent.ACTION_MAIN).apply {
-                addCategory(Intent.CATEGORY_LAUNCHER)
-                setPackage(pkgName)
-            }
-            val pm: PackageManager = activity.packageManager
-            val info = pm.queryIntentActivities(intent, 0)
-            val launcherActivity = info.first().activityInfo.name
-            intent.addCategory(Intent.CATEGORY_LAUNCHER)
-            intent.setClassName(pkgName, launcherActivity)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            activity.startActivity(intent)
-            return true
-        }
-        jump(activity)
-        return false
-    }
-
-    private fun jump(activity: Activity) {
-        runCatching {
-            val pkgName = "com.android.chrome"
-            val intent = Intent(Intent.ACTION_MAIN).apply {
-                addCategory(Intent.CATEGORY_LAUNCHER)
-                setPackage(pkgName)
-            }
-            val pm: PackageManager = activity.packageManager
-            val info = pm.queryIntentActivities(intent, 0)
-            val launcherActivity = info.first().activityInfo.name
-            intent.addCategory(Intent.CATEGORY_LAUNCHER)
-            intent.setClassName(pkgName, launcherActivity)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            activity.startActivity(intent)
-        }
-    }
-
 }

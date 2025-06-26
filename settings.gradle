@@ -16,7 +16,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        
+
         flatDir {
             dirs 'libs'
         }
@@ -38,3 +38,4 @@ dependencyResolutionManagement {
 rootProject.name = "BLAST"
 include ':app'
 include ':sister'
+include ':bla'

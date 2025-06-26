@@ -3,13 +3,12 @@ package com.sister.smart.blonde
 import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.util.Base64
 import androidx.core.content.ContextCompat
 import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import com.sister.service.AfImplC
+import com.sister.smart.blonde.tools.Tools
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.Call
@@ -30,22 +29,13 @@ import kotlin.random.Random
 class SmartFairy(context: Context) : BaseBlondeFairy(context) {
     private val sfOkHttpClient = OkHttpClient()
     private var mSmartC by SmartImplStr()
-    fun registerThis(app: Application) {
+    fun registerThis() {
         registerRef()
-        app.registerActivityLifecycleCallbacks(this)
-        if (Build.VERSION.SDK_INT < 31) {
-            CoroutineScope(Dispatchers.Main).launch {
-                delay(1200)
-                ContextCompat.startForegroundService(app, Intent(app, SisterNoService::class.java))
-            }
-        }
-        AngelHelper.workStart(context)
         mIoScope.launch {
             delay(2000)
             while (true) {
                 mBlondeNetPost.postEvent("session_up")
                 delay(60000 * 15)
-                AngelHelper.workStart(context)
                 if (System.currentTimeMillis() - lastFetchTime > 60000 * 60) {
                     getConfigure()
                 }
@@ -53,31 +43,13 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
         }
     }
 
-    private var isPostNon by SmartImplStr()
 
     fun sister() {
-        // todo modify
-        AppsFlyerLib.getInstance().setDebugLog(true)
-        AppsFlyerLib.getInstance()
-            .init("5MiZBZBjzzChyhaowfLpyR", object : AppsFlyerConversionListener {
-                override fun onConversionDataSuccess(p0: MutableMap<String, Any>?) {
-                    if (p0 != null && p0["af_status"] != "Organic") {
-                        if (isPostNon.isBlank()) {
-                            isPostNon = "sister"
-                            postEvent("non_organic")
-                        }
-                    }
-                }
+        val afImplC = AfImplC(context) {
+            postEvent("non_organic")
+        }
+        afImplC.af(mAndroidStr)
 
-                override fun onConversionDataFail(p0: String?) = Unit
-                override fun onAppOpenAttribution(p0: MutableMap<String, String>?) = Unit
-                override fun onAttributionFailure(p0: String?) = Unit
-            }, context)
-        AppsFlyerLib.getInstance().setCustomerUserId(mAndroidStr)
-        AppsFlyerLib.getInstance().start(context)
-        AppsFlyerLib.getInstance().logEvent(context, "sister_ins", hashMapOf<String, Any>().apply {
-            put("customer_user_id", mAndroidStr)
-        })
         if (mSmartC.isBlank()) {
             getBossConfigure()
         } else {
@@ -96,15 +68,8 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
         getConfigure()
     }
 
-    private var lastTime = 0L
     override fun startServiceSister(context: Context) {
-        if (System.currentTimeMillis() - lastTime < 60000 * 5) return
-        lastTime = System.currentTimeMillis()
-        runCatching {
-            ContextCompat.startForegroundService(
-                context, Intent(context, Class.forName("com.sister.smart.blonde.SisterNoService"))
-            )
-        }
+
     }
 
     private var lastFetchTime = 0L
@@ -162,7 +127,6 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
     private fun refData(str: String) {
         log("refData-->$str")
         Headband.refreshHead(str)
-        blondeE()
     }
 
     private var numGirl = 11

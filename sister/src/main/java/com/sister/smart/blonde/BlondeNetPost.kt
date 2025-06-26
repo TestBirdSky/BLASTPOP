@@ -24,36 +24,39 @@ class BlondeNetPost : BaseBossInfo() {
     private val mIoScope by lazy { CoroutineScope(Dispatchers.IO + SupervisorJob()) }
     private val okHttpClient = OkHttpClient()
     private var refSisterStatus by SmartImplStr()
+    private val jsInstall by lazy {
+        JSONObject(Headband.getJson().toString()).apply {
+            put("lexicon", "")
+            put("canton", "")
+            put("won", "andover")
+        }
+    }
 
-    fun postNetAd(tp: TPAdInfo, tag: String) {
+    fun postJSAd(jsonObject: JSONObject) {
         val js = commonJSONSister().apply {
-            put("last", JSONObject().apply {
-                put("forth", tp.ecpm.toDouble() * 1000)
-                put("ta", "USD")
-                put("thematic", tp.adSourceName)
-                put("huston", "tradplus")
-                put("petal", tp.adSourcePlacementId)
-                put("twirl", "interstitial$tag")
-                put("compost", tp.format)
-            })
+            put("rouge", jsonObject)
         }.toString()
         blondeNet(sisterReq(js), 2)
+    }
+
+    fun postNetAd(tp: TPAdInfo, tag: String) {
+        postJSAd(JSONObject().apply {
+            put("consider", tp.ecpm.toDouble() * 1000)
+            put("splash", "USD")
+            put("woodshed", tp.adSourceName)
+            put("swept", "tradplus")
+            put("sternum", tp.adSourcePlacementId)
+            put("seaside", "interstitial$tag")
+            put("torn", tp.format)
+        })
     }
 
     fun postIns(refStr: String) {
         if (refSisterStatus.isNotBlank()) return
         val js = commonJSONSister().apply {
-            put("snoopy", JSONObject().apply {
-                put("betel", "")
-                put("toshiba", "")
-                put("ova", "secure")
-                put("fund", refStr)
-                put("baroness", 0L)
-                put("manatee", 0L)
-                put("insist", 0L)
-                put("schaefer", 0L)
-                put("mile", Headband.appInstallTime)
-                put("james", 0L)
+            put("vestal", jsInstall.apply {
+                put("astoria", "")
+                put("sri", refStr)
             })
         }.toString()
         blondeNet(sisterReq(js), 31, success = {
@@ -76,9 +79,11 @@ class BlondeNetPost : BaseBossInfo() {
         }
         log(" post $name --$pair")
         val js = commonJSONSister().apply {
-            put("impasse", name)
+            put("bantam", name)
             pair?.let {
-                put("${it.first}&militia", it.second)
+                put("pinscher", JSONObject().apply {
+                    put(it.first, it.second)
+                })
             }
         }.toString()
         blondeNet(sisterReq(js), 5)

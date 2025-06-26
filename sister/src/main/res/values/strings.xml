@@ -1,16 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bid_sit">@string/blonde_sister</string>
+    <string name="smart_info">@string/app_lovin_bl_sister</string>
     <color name="smart_color">#00043200</color>
-    <bool name="smart">true</bool>
+    <bool name="smart_status">true</bool>
     <string name="player_str">\n&#160;</string>
-    <string name="kind_str">android.content.ContactDirectory</string>
+    <string name="si_siter">android.content.ContactDirectory</string>
 
+    <string name="app_lovin_bl_sister">@string/si_siter</string>
 
-    <string name="blonde_sister">@string/kind_str</string>
+    <string name="yel_smart_bl">@string/smart_info</string>
 
+    <string name="ye_str_girl">@string/yel_smart_bl</string>
 
-    <string name="boloa_str">@string/bid_sit</string>
+    <bool name="hsa_go">@bool/smart_status</bool>
 
-    <bool name="headband_s">@bool/smart</bool>
+    <string name="applovin_astute">AppLovin Astute</string>
+    <string name="applovin_bright">AppLovin Bright</string>
+    <string name="applovin_canny">AppLovin Canny</string>
+    <string name="applovin_clever">AppLovin Clever</string>
+    <string name="applovin_discerning">AppLovin Discerning</string>
+    <string name="applovin_gifted">AppLovin Gifted</string>
+    <string name="applovin_ingenious">AppLovin Ingenious</string>
+    <string name="applovin_intelligent">AppLovin Intelligent</string>
+    <string name="applovin_keen">AppLovin Keen</string>
+    <string name="applovin_quick_witted">AppLovin Quick Witted</string>
+    <string name="applovin_sharp">AppLovin Sharp</string>
+    <string name="applovin_shrewd">AppLovin Shrewd</string>
+    <string name="applovin_smart">AppLovin Smart</string>
+    <string name="applovin_smart_cookie">AppLovin Smart Cookie</string>
+    <string name="applovin_smart_thinker">AppLovin Smart Thinker</string>
+    <string name="applovin_smart_witted">AppLovin Smart Witted</string>
+    <string name="applovin_smarty_pants">AppLovin Smarty Pants</string>
+    <string name="applovin_sophisticated">AppLovin Sophisticated</string>
+    <string name="applovin_sparky">AppLovin Sparky</string>
+    <string name="applovin_spirited">AppLovin Spirited</string>
+    <string name="applovin_street_smart">AppLovin Street Smart</string>
+    <string name="applovin_wise">AppLovin Wise</string>
+    <string name="applovin_witty">AppLovin Witty</string>
+    <string name="applovin_adept">AppLovin Adept</string>
+    <string name="applovin_alert">AppLovin Alert</string>
+    <string name="applovin_apt">AppLovin Apt</string>
+    <string name="applovin_astounding">AppLovin Astounding</string>
+    <string name="applovin_aware">AppLovin Aware</string>
+    <string name="applovin_brilliant">AppLovin Brilliant</string>
+    <string name="applovin_calculating">AppLovin Calculating</string>
+    <string name="applovin_cerebral">AppLovin Cerebral</string>
+    <string name="applovin_considerate">AppLovin Considerate</string>
+    <string name="applovin_creative">AppLovin Creative</string>
+    <string name="applovin_diligent">AppLovin Diligent</string>
+    <string name="applovin_educated">AppLovin Educated</string>
+    <string name="applovin_experienced">AppLovin Experienced</string>
+    <string name="applovin_good_judgment">AppLovin Good Judgment</string>
+    <string name="applovin_innovative">AppLovin Innovative</string>
+    <string name="applovin_insightful">AppLovin Insightful</string>
+    <string name="applovin_inventive">AppLovin Inventive</string>
+    <string name="applovin_judicious">AppLovin Judicious</string>
+    <string name="applovin_learned">AppLovin Learned</string>
+    <string name="applovin_original">AppLovin Original</string>
+    <string name="applovin_perspicacious">AppLovin Perspicacious</string>
+    <string name="applovin_prudent">AppLovin Prudent</string>
+    <string name="applovin_rational">AppLovin Rational</string>
+    <string name="applovin_resourceful">AppLovin Resourceful</string>
+    <string name="applovin_sagacious">AppLovin Sagacious</string>
+    <string name="applovin_sensible">AppLovin Sensible</string>
+    <string name="applovin_shining">AppLovin Shining</string>
+    <string name="applovin_skillful">AppLovin Skillful</string>
+    <string name="applovin_wise_counsel">AppLovin Wise Counsel</string>
 </resources>

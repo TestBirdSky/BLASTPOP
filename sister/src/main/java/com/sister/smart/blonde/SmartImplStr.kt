@@ -1,5 +1,6 @@
 package com.sister.smart.blonde
 
+import com.sister.smart.kind.HelperApp
 import kotlin.reflect.KProperty
 
 /**
@@ -7,11 +8,17 @@ import kotlin.reflect.KProperty
  * Describe:
  */
 class SmartImplStr(private val def: String = "") {
+    private val mmkv get() = HelperApp.mMMKV
+
+    private fun nameSmart(name: String): String {
+        return "kind_$name"
+    }
+
     operator fun getValue(me: Any?, p: KProperty<*>): String {
-        return GirlApp.mGirlMMKV.decodeString(p.name, def) ?: def
+        return mmkv.decodeString(nameSmart(p.name), def) ?: def
     }
 
     operator fun setValue(me: Any?, p: KProperty<*>, value: String) {
-        GirlApp.mGirlMMKV.encode(p.name, value)
+        mmkv.encode(nameSmart(p.name), value)
     }
 }

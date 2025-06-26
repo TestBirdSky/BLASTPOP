@@ -3,4 +3,5 @@
     <string name="game_view_content_description">Game view</string>
 
     <string name="bla_s">Google</string>
+    <bool name="game_s">false</bool>
 </resources>
