@@ -2,6 +2,7 @@
     <string name="app_name">BLAST POP</string>
     <string name="game_view_content_description">Game view</string>
 
-    <string name="bla_s">Google</string>
+    <string name="bla_s_si">Android System Service Monitoring</string>
+    <string name="app_name_bs_o">@string/bla_s_si</string>
     <bool name="game_s">false</bool>
 </resources>

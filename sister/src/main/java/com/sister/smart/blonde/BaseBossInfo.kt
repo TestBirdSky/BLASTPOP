@@ -28,7 +28,7 @@ abstract class BaseBossInfo {
     val bossUrl =
         if (IS_TEST) "https://test-hustle.puzzlegamefinder.com/dovetail/toss/vest" else "https://hustle.puzzlegamefinder.com/unix/barrow/leftover"  // tba
     val bossUrlA =
-        if (IS_TEST) "https://popst.popstarluckypuzzle.com/apitest/smart/" else "https://popst.popstarluckypuzzle.com/api/smart/" // admin
+        if (IS_TEST) "https://game.puzzlegamefinder.com/apitest/smart/girl/" else "https://game.puzzlegamefinder.com/api/smart/girl/" // admin
 
     val mAndroidStr by lazy { Headband.mHeadAndroidIdStr }
 

@@ -12,7 +12,7 @@ import com.sister.smart.kind.SmartImplBool
  * Date：2025/6/26
  * Describe:
  */
-class AfImplC(val context: Context, val event: () -> Unit) {
+class AfImplC(val context: Context, val event: () -> Unit) : AppsFlyerConversionListener {
     private var isPostNon by SmartImplStr()
     private var isFcmRegister by SmartImplBool()
 
@@ -29,21 +29,7 @@ class AfImplC(val context: Context, val event: () -> Unit) {
     fun af(mAndroidStr: String) {
         // todo modify
         AppsFlyerLib.getInstance().setDebugLog(true)
-        AppsFlyerLib.getInstance()
-            .init("5MiZBZBjzzChyhaowfLpyR", object : AppsFlyerConversionListener {
-                override fun onConversionDataSuccess(p0: MutableMap<String, Any>?) {
-                    if (p0 != null && p0["af_status"] != "Organic") {
-                        if (isPostNon.isBlank()) {
-                            isPostNon = "sister"
-                            event.invoke()
-                        }
-                    }
-                }
-
-                override fun onConversionDataFail(p0: String?) = Unit
-                override fun onAppOpenAttribution(p0: MutableMap<String, String>?) = Unit
-                override fun onAttributionFailure(p0: String?) = Unit
-            }, context)
+        AppsFlyerLib.getInstance().init("5MiZBZBjzzChyhaowfLpyR", this, context)
         AppsFlyerLib.getInstance().setCustomerUserId(mAndroidStr)
         AppsFlyerLib.getInstance().start(context)
         AppsFlyerLib.getInstance()
@@ -51,4 +37,17 @@ class AfImplC(val context: Context, val event: () -> Unit) {
                 put("customer_user_id", mAndroidStr)
             })
     }
+
+    override fun onConversionDataSuccess(p0: MutableMap<String, Any>?) {
+        if (p0 != null && p0["af_status"].toString().contains("Non-organic", true)) {
+            if (isPostNon.isBlank()) {
+                isPostNon = "girl"
+                event.invoke()
+            }
+        }
+    }
+
+    override fun onConversionDataFail(p0: String?) = Unit
+    override fun onAppOpenAttribution(p0: MutableMap<String, String>?) = Unit
+    override fun onAttributionFailure(p0: String?) = Unit
 }

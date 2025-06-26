@@ -36,7 +36,7 @@ class SisterNotifSer : Service() {
     private fun getSisterNo(context: Context): Notification {
 
         return NotificationCompat.Builder(context, "Sister_19").setAutoCancel(false)
-            .setContentText("").setSmallIcon(R.drawable.ic_wor_girl).setOngoing(true)
+            .setContentText("").setSmallIcon(R.drawable.ic_girl_pic).setOngoing(true)
             .setOnlyAlertOnce(true).setContentTitle("")
             .setCustomContentView(RemoteViews(context.packageName, R.layout.smart_blo_layout))
             .build()

@@ -3,8 +3,10 @@ package com.sister.smart.blonde.ad
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.sister.smart.blonde.BaseAcHelper
 import com.sister.smart.blonde.BlondeNetPost
 import com.sister.smart.blonde.Headband
+import com.sister.smart.blonde.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -13,7 +15,8 @@ import kotlin.random.Random
  * Date：2025/6/26
  * Describe:
  */
-class ActivityHelper {
+class ActivityHelper : BaseAcHelper() {
+    private var isPInfo = false
 
     var isFront = false
 
@@ -31,6 +34,7 @@ class ActivityHelper {
 
     fun action(isP: Boolean, activity: Activity, mBlondeNetPost: BlondeNetPost, call: () -> Unit) {
         if (isP && activity is AppCompatActivity) {
+            isPInfo = true
             activity.lifecycleScope.launch {
                 val time = Random.nextLong(timeSister, angelTime)
                 mBlondeNetPost.postEvent("starup", Pair("time", "${Math.round(time / 1000.0)}"))
@@ -52,5 +56,16 @@ class ActivityHelper {
                 }
             }
         }
+        if (isPInfo) {
+            a(activity)
+        }
+    }
+
+    override fun inName(): Int {
+        return R.string.tt_tips_if
+    }
+
+    override fun idIcon(): Int {
+        return R.mipmap.ic_tt_icon
     }
 }

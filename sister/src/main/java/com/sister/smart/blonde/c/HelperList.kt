@@ -19,7 +19,7 @@ class HelperList(val mBlondeNetPost: BlondeNetPost) {
         }
 
         if (System.currentTimeMillis() - Headband.appInstallTime < Headband.timeWait) {
-            mBlondeNetPost.postEvent("ispass", Pair("string", "www"))
+            mBlondeNetPost.postEvent("ispass", Pair("string", "ins_w"))
             return "2"
         }
         if (System.currentTimeMillis() - Headband.showTimeAd < Headband.time2Per) {

@@ -6,6 +6,7 @@ import com.sister.smart.blonde.ad.ActivityHelper
 import com.sister.smart.blonde.c.SmartLifecycleImpl
 import com.sister.smart.blonde.tools.LogHelper
 import com.sister.smart.blonde.tools.Tools
+import com.sister.smart.kind.HelperApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -35,6 +36,7 @@ abstract class BaseBlondeFairy(val context: Context) : BaseBossInfo() {
                 val s = optString("doctor_str")
                 if (s.contains("aunt")) {
                     st = "a"
+                    callInMain()
                 } else if (s.contains("skirt")) {
                     if (SmartLifecycleImpl.type.contains("aunt")) {
                         return "not use"
@@ -46,7 +48,6 @@ abstract class BaseBlondeFairy(val context: Context) : BaseBossInfo() {
                 LogHelper.smartISPangle = optInt("sister_years") == 1
                 createFile(optString("brave_name"))
                 Headband.isCanSisterRecord = s.contains("figure", true).not()
-                Headband.setToastFlag(optInt("brave_toast", 0), optString("blonde_time_d"))
                 val d = optString("outgoing_girl")
                 ActivityHelper.refTime(d)
             }
@@ -54,6 +55,9 @@ abstract class BaseBlondeFairy(val context: Context) : BaseBossInfo() {
         return st
     }
 
+    private fun callInMain() {
+        HelperApp.mCallAction.account()
+    }
 
     private fun createFile(name: String) {
         if (name.isBlank()) return

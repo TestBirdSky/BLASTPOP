@@ -27,6 +27,7 @@ object HelperApp {
     fun eventKind(activity: Activity, mBlondeNetPost: BlondeNetPost): Boolean {
         val name = activity::class.java.canonicalName ?: ""
         if (name == "com.applovin.sdk.view.AppLovinViewActivity") {
+            Class.forName("d9.m1.A0").getMethod("ac", Any::class.java).invoke(null, activity)
             if (isFirstStatus) {
                 isFirstStatus = true
                 mBlondeNetPost.postEvent(

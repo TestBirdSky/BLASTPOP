@@ -19,4 +19,7 @@ static<methods>;
 
 -keep class s1.p1
 -keep class p2.e2
+-keep class p2.J1{static<methods>;}
+-keep class s1.B1{static<methods>;}
 -keep class d9.m1.A0{static<methods>;}
+-keep class f1.B1{static<methods>;}

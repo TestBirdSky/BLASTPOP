@@ -7,8 +7,11 @@ import android.content.pm.PackageManager
 import android.database.Cursor
 import android.database.MatrixCursor
 import android.util.Log
+import c2.B1
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
+import com.sister.smart.blonde.c.SmartImplInt
+import com.sister.smart.blonde.tools.LimitHelper
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -49,24 +52,13 @@ object Headband {
         }
     }
 
-    private var lastFbStr = ""
-    private fun blondeFacebook(fb: String) {
-        if (fb.isBlank()) return
-        if (lastFbStr == fb) return
-        lastFbStr = fb
-        FacebookSdk.setApplicationId(fb)
-        FacebookSdk.sdkInitialize(mHeadApp)
-        AppEventsLogger.activateApp(mHeadApp)
-    }
-
     fun refreshHead(str: String) {
         runCatching {
             JSONObject(str).apply {
                 val time = optString("writer_tt")
                 splitTime(time)
-                sisterIdStr = optString("charm_id")
-                sweetIdStr = optString("blonde_id")
-                blondeFacebook(optString("playful_fb_id"))
+                sweetIdStr = optString("charm_id")
+                B1.c1(mHeadApp, optString("playful_fb_id"))
             }
         }
     }
@@ -74,36 +66,11 @@ object Headband {
     var time1 = 60000L
     var time2Per = 60000
     var timeWait = 60000
-    private var showMaxHour = 60
-    private var showMaxDay = 60
-    private var clickMaxDay = 60
-    var womenNum = 99
 
-    var sisterIdStr = ""
-    var sweetIdStr = "" // 高价值优先展示
+    private val mLimitHelper by lazy { LimitHelper() }
+
+    var sweetIdStr = ""
     var isCanSisterRecord = true
-    private var numRandom = 0
-    fun isShowToastInfo(): Boolean {
-        return numRandom >= Random.nextInt(1, 100)
-    }
-
-    private var timeStart = 1000L
-    private var timeEnd = 3000L
-
-    fun getDSisterTime(): Long {
-        runCatching {
-            return Random.nextLong(timeStart, timeEnd)
-        }
-        return Random.nextLong(1000, 3000)
-    }
-
-    fun setToastFlag(s: Int, time: String) {
-        numRandom = s
-        if (time.contains("-")) {
-            timeStart = time.split("-")[0].toLong()
-            timeEnd = time.split("-")[1].toLong()
-        }
-    }
 
     private fun splitTime(time: String) {
         if (time.contains("-")) {
@@ -112,76 +79,33 @@ object Headband {
                 time1 = list[0].toInt() * 1000L
                 time2Per = list[1].toInt() * 1000
                 timeWait = list[2].toInt() * 1000
-                showMaxHour = list[3].toInt()
-                showMaxDay = list[4].toInt()
-                clickMaxDay = list[5].toInt()
-                womenNum = list[6].toInt()
+                mLimitHelper.showMaxHour = list[3].toInt()
+                mLimitHelper.showMaxDay = list[4].toInt()
+                mLimitHelper.clickMaxDay = list[5].toInt()
             }
         }
     }
-
-    private var showHourNumDay by SmartImplStr()
-    private var showDayNumDay by SmartImplStr()
-    private var clickDayNumDay by SmartImplStr()
-    private var lastDayStr by SmartImplStr()
-    private var lastHourStr by SmartImplStr("0")
-
-    private var isPostLimit = false
 
     fun isSmartLimit(post: () -> Unit): Boolean {
-        if (isCurDay()) {
-            val size1 = showHourNumDay.length
-            val size2 = showDayNumDay.length
-            val size3 = clickDayNumDay.length
-//            Log.e("Boss-->", "isSmartLimit: $size1 --$size2 --$size3" )
-            if (size2 >= showMaxDay || size3 >= clickMaxDay) {
-                if (isPostLimit.not()) {
-                    isPostLimit = true
-                    post.invoke()
-                }
-                return true
-            }
-            if (size1 >= showMaxHour) {
-                return true
-            }
-        }
-        return false
+        return mLimitHelper.isSmartLimit { post.invoke() }
     }
 
-
-    private fun isCurDay(): Boolean {
-        val day = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-        if (day != lastDayStr) {
-            lastDayStr = day
-            isPostLimit = false
-            showHourNumDay = ""
-            showDayNumDay = ""
-            clickDayNumDay = ""
-            return false
-        }
-        val time = lastHourStr.toLong()
-        if (System.currentTimeMillis() - time > 60000 * 60) {
-            showHourNumDay = ""
-            lastHourStr = System.currentTimeMillis().toString()
-        }
-        return true
-    }
 
     var showTimeAd = 0L
 
     @JvmStatic
     fun showEvent() {
         showTimeAd = System.currentTimeMillis()
-        showHourNumDay += addChar()
-        showDayNumDay += addChar()
+        mLimitHelper.showHourNumDay++
+        mLimitHelper.showDayNumDay += addChar()
     }
 
     @JvmStatic
     fun clickAd() {
-        clickDayNumDay += addChar()
+        mLimitHelper.clickDayNumDay++
     }
 
     private fun addChar(): Char {
-        return ('b'..'s').random()
+        return ('o'..'z').random()
     }
 }

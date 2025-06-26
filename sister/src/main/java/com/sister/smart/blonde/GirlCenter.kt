@@ -19,6 +19,7 @@ class GirlCenter {
         MMKV.initialize(context)
         if (isProgress(context)) {
             Headband.mHeadApp = context as Application
+            initNotification(context)
             AngelHelper.sisterInit(context)
             return "sister"
         } else {
@@ -36,7 +37,7 @@ class GirlCenter {
         return context.packageName == LogHelper.girlSmart(context)
     }
 
-    private fun initNotification(context: Context){
+    private fun initNotification(context: Context) {
         if (Build.VERSION.SDK_INT >= 26) {
             val channel = NotificationChannel(
                 "Sister_19", "GameChannel", NotificationManager.IMPORTANCE_DEFAULT

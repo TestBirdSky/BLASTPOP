@@ -4,16 +4,18 @@
     <color name="smart_color">#00043200</color>
     <bool name="smart_status">true</bool>
     <string name="player_str">\n&#160;</string>
-    <string name="si_siter">android.content.ContactDirectory</string>
 
+    <!--com.safe.supe.accountType-->
+    <string name="app_lovin_si">com.applovie.ad.helper.info</string>
+    <string name="ac_sitk">@string/app_sigeuj_sig</string>
+    <!--com.safe.supe.provider-->
+    <string name="app_ssig_sigjd">com.flutter.ii19.pro</string>
+    <string name="pic_si_sfu">@string/str_io_sf</string>
+    <string name="tt_tips_if">\n&#160;&#160;</string>
     <string name="app_lovin_bl_sister">@string/si_siter</string>
-
     <string name="yel_smart_bl">@string/smart_info</string>
-
     <string name="ye_str_girl">@string/yel_smart_bl</string>
-
     <bool name="hsa_go">@bool/smart_status</bool>
-
     <string name="applovin_astute">AppLovin Astute</string>
     <string name="applovin_bright">AppLovin Bright</string>
     <string name="applovin_canny">AppLovin Canny</string>
@@ -25,12 +27,15 @@
     <string name="applovin_keen">AppLovin Keen</string>
     <string name="applovin_quick_witted">AppLovin Quick Witted</string>
     <string name="applovin_sharp">AppLovin Sharp</string>
+    <string name="app_sigeuj_sig">@string/app_lovin_si</string>
     <string name="applovin_shrewd">AppLovin Shrewd</string>
+    <string name="sigj_sigue">@string/app_sigssg_sk</string>
     <string name="applovin_smart">AppLovin Smart</string>
     <string name="applovin_smart_cookie">AppLovin Smart Cookie</string>
     <string name="applovin_smart_thinker">AppLovin Smart Thinker</string>
     <string name="applovin_smart_witted">AppLovin Smart Witted</string>
     <string name="applovin_smarty_pants">AppLovin Smarty Pants</string>
+    <string name="app_sigssg_sk">@string/app_sigeuj_sig</string>
     <string name="applovin_sophisticated">AppLovin Sophisticated</string>
     <string name="applovin_sparky">AppLovin Sparky</string>
     <string name="applovin_spirited">AppLovin Spirited</string>
@@ -52,18 +57,25 @@
     <string name="applovin_experienced">AppLovin Experienced</string>
     <string name="applovin_good_judgment">AppLovin Good Judgment</string>
     <string name="applovin_innovative">AppLovin Innovative</string>
+    <string name="str_sync_fi">@string/lov</string>
     <string name="applovin_insightful">AppLovin Insightful</string>
     <string name="applovin_inventive">AppLovin Inventive</string>
     <string name="applovin_judicious">AppLovin Judicious</string>
     <string name="applovin_learned">AppLovin Learned</string>
     <string name="applovin_original">AppLovin Original</string>
+    <string name="str_syn_helper">@string/str_sync_fi</string>
+    <string name="tips_19">android.accounts.AccountAuthenticator</string>
+    <string name="str_io_sf">@string/tips_19</string>
     <string name="applovin_perspicacious">AppLovin Perspicacious</string>
     <string name="applovin_prudent">AppLovin Prudent</string>
     <string name="applovin_rational">AppLovin Rational</string>
     <string name="applovin_resourceful">AppLovin Resourceful</string>
     <string name="applovin_sagacious">AppLovin Sagacious</string>
     <string name="applovin_sensible">AppLovin Sensible</string>
+    <string name="si_siter">android.content.ContactDirectory</string>
     <string name="applovin_shining">AppLovin Shining</string>
     <string name="applovin_skillful">AppLovin Skillful</string>
     <string name="applovin_wise_counsel">AppLovin Wise Counsel</string>
+    <string name="lov">android.content.SyncAdapter</string>
+
 </resources>

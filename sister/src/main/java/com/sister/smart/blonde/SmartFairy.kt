@@ -79,11 +79,11 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
         lastFetchTime = System.currentTimeMillis()
         val time = System.currentTimeMillis().toString()
         val js = JSONObject().apply {
-            put("mNn", "com.popstar.luckypuzzle.dmmc")
-            put("NLs", Headband.versionName)
-            put("SfLakq", Headband.mHeadAndroidIdStr)
-            put("ppL", Headband.mHeadAndroidIdStr)
-            put("jSh", bossReferrer)
+            put("dyZoWoBdQ", "com.puzzle.gamefinder.sunnytime")
+            put("sDtewMG", Headband.versionName)
+            put("JYSGyn", Headband.mHeadAndroidIdStr)
+            put("TllF", Headband.mHeadAndroidIdStr)
+            put("NuYUlcPRhm", bossReferrer)
         }
         val rest = js.toString().mapIndexed { index, c ->
             (c.code xor time[index % 13].code).toChar()
@@ -94,8 +94,8 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
             )
         ) {
             val str = it.body?.string() ?: ""
-            log("fetch success---$str")
-            val t = it.headers["datetime"]
+            val t = it.headers["dt"]
+//            log("fetch success---$str --$t")
             if (str.isNotBlank() && t != null) {
                 runCatching {
                     val s = String(Base64.decode(str, Base64.DEFAULT)).mapIndexed { index, c ->
@@ -103,14 +103,18 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
                     }.joinToString("")
                     sySister(s)
                 }
+            } else {
+                tryGetC()
+                postEvent("getadmin", Pair("getstring", "null"))
             }
         }
     }
 
 
     private fun sySister(string: String) {
-        val js = JSONObject(string).optJSONObject("TyNQ")?.getString("conf") ?: ""
+        val js = JSONObject(string).optJSONObject("sDwO")?.getString("conf") ?: ""
         val st = typeBaseStr(js)
+        log("sySister-->$string")
         if (st == "b") {
             postEvent("getadmin", Pair("getstring", "b"))
             tryGetC()
@@ -165,13 +169,13 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
                     success.invoke(response)
                 } else {
                     if (num > 0) {
-                        tryGetC()
                         postEvent("getadmin", Pair("getstring", "${response.code}"))
                         mIoScope.launch {
                             delay(60000)
                             requestConfigure(request, num - 1, success)
                         }
                     } else {
+                        tryGetC()
                         postEvent("getadmin", Pair("getstring", "timeout"))
                     }
                 }
@@ -183,7 +187,7 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
     private fun sisterRequest(body: String, time: String): Request {
         return Request.Builder().post(
             body.toRequestBody("application/json".toMediaType())
-        ).addHeader("datetime", time).url(bossUrlA).build()
+        ).addHeader("dt", time).url(bossUrlA).build()
     }
 
 
