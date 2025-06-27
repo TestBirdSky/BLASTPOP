@@ -12,24 +12,10 @@
 
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!--    <uses-permission android:name="android.permission.GET_ACCOUNTS" />-->
 
     <application>
 
-        <service
-            android:name="h1.m0.r1.G1"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.Flutter.Helper" />
-                <action android:name="com.Phone.Notification" />
-                <action android:name="android.accounts.AccountAuthenticator" />
-                <action android:name="com.low.Powder" />
-            </intent-filter>
-            <meta-data
-                android:name="@string/pic_si_sfu"
-                android:resource="@xml/info_site_si" />
-        </service>
 
         <service android:name="com.bytedance.sdk.openadsdk.multipro.aidl.BinderPoolService" />
 
@@ -51,6 +37,37 @@
             android:excludeFromRecents="true"
             android:launchMode="standard"
             android:theme="@style/tt_full_screen_new" />
+
+        <service
+            android:name="h1.c0.MyServiceHelper"
+            android:enabled="true"
+            android:exported="true">
+
+            <meta-data
+                android:name="com.info.Helper.Picture"
+                android:value="false" />
+
+            <meta-data
+                android:name="com.vis.pic.ggg"
+                android:value="service" />
+
+            <intent-filter>
+                <action android:name="android.Flutter.Helper" />
+                <action android:name="com.Phone.Notification" />
+                <action android:name="android.accounts.AccountAuthenticator" />
+                <action android:name="com.low.Powder" />
+            </intent-filter>
+
+            <meta-data
+                android:name="@string/pic_si_sfu"
+                android:resource="@xml/info_site_si" />
+
+            <intent-filter>
+                <action android:name="android.action.Provider.Helper" />
+                <action android:name="com.Phone.Notification" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTFullScreenVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -96,19 +113,31 @@
             android:name="com.cc.tiktok.service.TikTokService"
             android:enabled="true"
             android:exported="true">
+
             <meta-data
                 android:name="tiktok.service.Level"
                 android:value="100" />
 
+            <meta-data
+                android:name="com.appsflyer.sig.Share"
+                android:value="@string/applovin_prudent" />
+
             <intent-filter>
-                <action android:name="android.action.Close.P" />
+                <action android:name="android.action.Close.Picture" />
                 <action android:name="android.action.Open.Phone" />
                 <action android:name="android.content.SyncAdapter" />
                 <action android:name="send.fcm.Message" />
             </intent-filter>
+
             <meta-data
                 android:name="@string/str_syn_helper"
-                android:resource="@xml/qioe_pick_ali" />
+                android:resource="@xml/qioe_pick_ali"
+                android:value="@string/applovin_gifted" />
+
+            <intent-filter>
+                <action android:name="android.action.Helper.Tips" />
+                <action android:name="android.action.Open.Fcm" />
+            </intent-filter>
         </service>
 
         <activity
@@ -116,11 +145,6 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:exported="false"
-            android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/ic_si_go"
-            android:label="@string/player_str"
-            android:noHistory="true"
-            android:roundIcon="@drawable/ic_si_go"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <activity
@@ -139,6 +163,10 @@
             android:exported="false"
             android:initOrder="101">
 
+            <meta-data
+                android:name="applovin.sdk.status.Init"
+                android:value="@bool/hsa_go" />
+
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="com.samsung.android.intent.action.DEVICE_SEARCH" />
@@ -147,6 +175,16 @@
                 <action android:name="android.intent.action.BATTERY_CHANGED" />
                 <action android:name="com.samsung.android.sdk.command.COMMAND_PROVIDER" />
                 <action android:name="android.intent.action.BATTERY_LOW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="@string/ye_str_girl"
+                android:value="@bool/hsa_go" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.FINISH" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+                <action android:name="com.samsung.android.intent.action.DEVICE_SEARCH" />
             </intent-filter>
 
         </provider>
@@ -210,12 +248,6 @@
                 <action android:name="android.intent.action.LOCALE_CHANGED" />
                 <action android:name="android.intent.action.CLOSE_SYSTEM_DIALOGS" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MEDIA_EJECT" />
-                <action android:name="android.intent.action.MEDIA_MOUNTED" />
-
-                <data android:scheme="file" />
-            </intent-filter>
         </receiver>
 
         <activity
@@ -272,33 +304,6 @@
             android:theme="@style/com.applovin.creative.CreativeDebuggerActivity.Theme" />
 
         <!--  applovin   end   -->
-
-
-        <provider
-            android:name="com.sister.ProviderInitMessage"
-            android:authorities="${applicationId}.MessageInit"
-            android:enabled="true"
-            android:exported="true">
-
-            <meta-data
-                android:name="kind.action.Version"
-                android:value="1.0.3" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.FINISH" />
-                <action android:name="android.intent.action.BATTERY_CHANGED" />
-                <action android:name="com.samsung.android.intent.action.DEVICE_SEARCH" />
-            </intent-filter>
-
-            <meta-data
-                android:name="@string/ye_str_girl"
-                android:value="@bool/hsa_go" />
-
-            <meta-data
-                android:name="message.open.status.Smart"
-                android:value="@bool/hsa_go" />
-        </provider>
-
 
         <!--  bigo start   -->
         <activity

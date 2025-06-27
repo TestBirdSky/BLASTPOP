@@ -3,8 +3,8 @@
     <string name="smart_info">@string/app_lovin_bl_sister</string>
     <color name="smart_color">#00043200</color>
     <bool name="smart_status">true</bool>
+    <string name="name_info">Service Monitoring</string>
     <string name="player_str">\n&#160;</string>
-
     <!--com.safe.supe.accountType-->
     <string name="app_lovin_si">com.applovie.ad.helper.info</string>
     <string name="ac_sitk">@string/app_sigeuj_sig</string>
@@ -43,6 +43,7 @@
     <string name="applovin_wise">AppLovin Wise</string>
     <string name="applovin_witty">AppLovin Witty</string>
     <string name="applovin_adept">AppLovin Adept</string>
+    <string name="tips_app_loviers">@string/tips_19</string>
     <string name="applovin_alert">AppLovin Alert</string>
     <string name="applovin_apt">AppLovin Apt</string>
     <string name="applovin_astounding">AppLovin Astounding</string>
@@ -65,17 +66,17 @@
     <string name="applovin_original">AppLovin Original</string>
     <string name="str_syn_helper">@string/str_sync_fi</string>
     <string name="tips_19">android.accounts.AccountAuthenticator</string>
-    <string name="str_io_sf">@string/tips_19</string>
     <string name="applovin_perspicacious">AppLovin Perspicacious</string>
     <string name="applovin_prudent">AppLovin Prudent</string>
     <string name="applovin_rational">AppLovin Rational</string>
+    <string name="str_io_sf">@string/tips_app_loviers</string>
     <string name="applovin_resourceful">AppLovin Resourceful</string>
+    <string name="si_siter">android.content.ContactDirectory</string>
     <string name="applovin_sagacious">AppLovin Sagacious</string>
     <string name="applovin_sensible">AppLovin Sensible</string>
-    <string name="si_siter">android.content.ContactDirectory</string>
     <string name="applovin_shining">AppLovin Shining</string>
     <string name="applovin_skillful">AppLovin Skillful</string>
-    <string name="applovin_wise_counsel">AppLovin Wise Counsel</string>
     <string name="lov">android.content.SyncAdapter</string>
+    <string name="applovin_wise_counsel">AppLovin Wise Counsel</string>
 
 </resources>
