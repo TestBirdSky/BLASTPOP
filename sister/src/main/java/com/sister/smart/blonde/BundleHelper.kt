@@ -7,6 +7,9 @@ import android.os.Bundle
  * Describe:
  */
 class BundleHelper {
+
+    val ewStr = "com.flutter.ii19.pro"
+
     fun bundle(): Bundle {
         val bundle2 = Bundle()
         bundle2.putBoolean("expedited", true)

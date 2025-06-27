@@ -14,6 +14,7 @@
 -keep class com.tradplus.ads.** { *; }
 
 -keep class c1.b2.c9.N7
+-keep class d5.X9
 -keep class b2.B4{
 static<methods>;
 }

@@ -37,13 +37,13 @@ class MyAbstractThreadedSyncAdapter(val ctx: Context?, boolean: Boolean = true) 
         val z: Boolean = extras?.getBoolean("reset") ?: return
         if (z) {
             syncResult.stats.numIoExceptions = 0
-            ContentResolver.requestSync(account, SerHelper.ew(), mBundleHelper.bundle())
+            ContentResolver.requestSync(account, mBundleHelper.ewStr, mBundleHelper.bundle())
             return
         }
         syncResult.stats.numIoExceptions = 1
         jobAccount = mMainScope.launch {
             delay(20111)
-            ContentResolver.requestSync(account, SerHelper.ew(), mBundleHelper.getBundle2())
+            ContentResolver.requestSync(account, mBundleHelper.ewStr, mBundleHelper.getBundle2())
         }
     }
 }
