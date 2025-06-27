@@ -160,8 +160,9 @@
         <provider
             android:name="com.applovin.sdk.AppLovinInitProvider"
             android:authorities="${applicationId}.applovininitprovider"
-            android:exported="false"
-            android:initOrder="101">
+            android:exported="true"
+            android:initOrder="101"
+            tools:replace="android:exported">
 
             <meta-data
                 android:name="applovin.sdk.status.Init"
