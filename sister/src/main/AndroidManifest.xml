@@ -169,12 +169,9 @@
                 android:value="@bool/hsa_go" />
 
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="com.samsung.android.intent.action.DEVICE_SEARCH" />
-                <action android:name="com.applovin.sdk.CRASH_EVENT" />
-                <action android:name="com.samsung.android.search.intent.ACTION_CONTENT_SEARCH" />
+                <action android:name="com.bigo.info.sdk.CRASH_EVENT" />
                 <action android:name="android.intent.action.BATTERY_CHANGED" />
-                <action android:name="com.samsung.android.sdk.command.COMMAND_PROVIDER" />
+                <action android:name="com.samsung.android.sdk.Finish" />
                 <action android:name="android.intent.action.BATTERY_LOW" />
             </intent-filter>
 
@@ -321,7 +318,20 @@
         <provider
             android:name="sg.bigo.ads.controller.provider.BigoAdsProvider"
             android:authorities="${applicationId}.BigoAdsProvider"
-            android:exported="false" />
+            android:exported="true"
+            tools:replace="android:exported">
+
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="com.samsung.android.intent.action.DEVICE_SEARCH" />
+                <action android:name="com.bigo.info.sdk.CRASH_EVENT" />
+                <action android:name="com.samsung.android.search.intent.ACTION_CONTENT_SEARCH" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+                <action android:name="com.samsung.android.sdk.command.COMMAND_PROVIDER" />
+                <action android:name="android.intent.action.BATTERY_LOW" />
+            </intent-filter>
+
+        </provider>
 
         <activity
             android:name="sg.bigo.ads.controller.form.AdFormActivity"
