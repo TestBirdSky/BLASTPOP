@@ -1,14 +1,8 @@
 package com.sister.smart.blonde
 
-import android.app.Application
 import android.content.Context
-import android.content.Intent
 import android.util.Base64
-import androidx.core.content.ContextCompat
-import com.appsflyer.AppsFlyerConversionListener
-import com.appsflyer.AppsFlyerLib
-import com.sister.service.AfImplC
-import com.sister.smart.blonde.tools.Tools
+import com.sister.smart.blonde.data.SmartImplStr
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.Call
@@ -45,11 +39,6 @@ class SmartFairy(context: Context) : BaseBlondeFairy(context) {
 
 
     fun sister() {
-        val afImplC = AfImplC(context) {
-            postEvent("non_organic")
-        }
-        afImplC.af(mAndroidStr)
-
         if (mSmartC.isBlank()) {
             getBossConfigure()
         } else {

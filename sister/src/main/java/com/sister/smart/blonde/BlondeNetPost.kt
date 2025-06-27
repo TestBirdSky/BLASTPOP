@@ -1,5 +1,6 @@
 package com.sister.smart.blonde
 
+import com.sister.smart.blonde.data.SmartImplStr
 import com.tradplus.ads.base.bean.TPAdInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

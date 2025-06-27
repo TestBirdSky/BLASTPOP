@@ -3,7 +3,7 @@ package com.sister.smart.blonde.ad
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.sister.smart.blonde.BaseAcHelper
+import com.sister.smart.blonde.c.BaseAcHelper
 import com.sister.smart.blonde.BlondeNetPost
 import com.sister.smart.blonde.Headband
 import com.sister.smart.blonde.R

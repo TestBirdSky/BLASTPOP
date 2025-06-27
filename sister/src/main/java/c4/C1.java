@@ -2,10 +2,9 @@ package c4;
 
 import android.content.Context;
 
-import com.sister.smart.blonde.BlondeAdHelper;
+import com.sister.smart.kind.BlondeAdHelper;
 import com.sister.smart.blonde.GirlCenter;
 import com.sister.smart.blonde.tools.LogHelper;
-import com.sister.smart.blonde.tools.Tools;
 
 /**
  * Date：2025/6/26

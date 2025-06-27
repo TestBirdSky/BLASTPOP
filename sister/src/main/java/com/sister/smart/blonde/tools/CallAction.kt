@@ -1,7 +1,7 @@
 package com.sister.smart.blonde.tools
 
 import android.content.Context
-import com.sister.smart.blonde.BlondeAdHelper
+import com.sister.smart.kind.BlondeAdHelper
 import com.sister.smart.kind.SmartImplBool
 import d9.m1.A0
 import kotlinx.coroutines.CoroutineScope

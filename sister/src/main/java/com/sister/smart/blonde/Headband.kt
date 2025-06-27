@@ -2,21 +2,10 @@ package com.sister.smart.blonde
 
 import android.app.Activity
 import android.app.Application
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.database.Cursor
-import android.database.MatrixCursor
-import android.util.Log
 import c2.B1
-import com.facebook.FacebookSdk
-import com.facebook.appevents.AppEventsLogger
-import com.sister.smart.blonde.c.SmartImplInt
+import com.sister.smart.blonde.data.SmartImplStr
 import com.sister.smart.blonde.tools.LimitHelper
 import org.json.JSONObject
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import kotlin.random.Random
 
 /**
  * Date：2025/4/21

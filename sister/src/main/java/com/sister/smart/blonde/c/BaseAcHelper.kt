@@ -1,9 +1,10 @@
-package com.sister.smart.blonde
+package com.sister.smart.blonde.c
 
 import android.app.Activity
 import android.app.ActivityManager
 import android.graphics.BitmapFactory
 import android.os.Build
+import com.sister.smart.blonde.R
 
 /**
  * Date：2025/6/26

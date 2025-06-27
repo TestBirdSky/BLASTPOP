@@ -1,10 +1,13 @@
-package com.sister.smart.blonde
+package com.sister.smart.kind
 
 import android.app.Activity
 import android.content.Context
 import com.bytedance.sdk.openadsdk.api.init.PAGConfig
 import com.bytedance.sdk.openadsdk.api.init.PAGSdk
 import com.bytedance.sdk.openadsdk.api.init.PAGSdk.PAGInitCallback
+import com.sister.smart.blonde.Headband
+import com.sister.smart.blonde.PangleSmart
+import com.sister.smart.blonde.R
 import com.sister.smart.blonde.ad.ShyBlondeTradImpl
 import com.sister.smart.blonde.tools.LogHelper
 import com.tradplus.ads.open.TradPlusSdk

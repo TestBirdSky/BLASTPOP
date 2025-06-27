@@ -4,6 +4,7 @@ import android.content.Context
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.android.installreferrer.api.ReferrerDetails
+import com.sister.smart.blonde.data.SmartImplStr
 import com.sister.smart.blonde.tools.LogHelper
 
 /**

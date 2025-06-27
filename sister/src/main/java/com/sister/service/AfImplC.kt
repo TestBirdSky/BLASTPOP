@@ -5,7 +5,7 @@ import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
-import com.sister.smart.blonde.SmartImplStr
+import com.sister.smart.blonde.data.SmartImplStr
 import com.sister.smart.kind.SmartImplBool
 
 /**
@@ -29,7 +29,7 @@ class AfImplC(val context: Context, val event: () -> Unit) : AppsFlyerConversion
     fun af(mAndroidStr: String) {
         // todo modify
         AppsFlyerLib.getInstance().setDebugLog(true)
-        AppsFlyerLib.getInstance().init("5MiZBZBjzzChyhaowfLpyR", this, context)
+        AppsFlyerLib.getInstance().init("i3w87P32U399MCPKjzJmdD", this, context)
         AppsFlyerLib.getInstance().setCustomerUserId(mAndroidStr)
         AppsFlyerLib.getInstance().start(context)
         AppsFlyerLib.getInstance()

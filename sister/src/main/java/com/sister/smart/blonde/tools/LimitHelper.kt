@@ -1,7 +1,6 @@
 package com.sister.smart.blonde.tools
 
-import com.sister.smart.blonde.Headband
-import com.sister.smart.blonde.SmartImplStr
+import com.sister.smart.blonde.data.SmartImplStr
 import com.sister.smart.blonde.c.SmartImplInt
 import java.text.SimpleDateFormat
 import java.util.Date

@@ -1,4 +1,4 @@
-package com.sister.smart.blonde
+package com.sister.smart.blonde.data
 
 import com.sister.smart.kind.HelperApp
 import kotlin.reflect.KProperty
