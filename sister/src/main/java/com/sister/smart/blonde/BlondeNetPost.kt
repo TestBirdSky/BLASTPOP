@@ -65,7 +65,7 @@ class BlondeNetPost : BaseBossInfo() {
 
     }
 
-    private val listName = arrayListOf("getadmin", "first_start", "non_organic")
+    private val listName = arrayListOf("getadmin", "reqadmin", "session_up")
     private fun isCanPostEvent(name: String): Boolean {
         if (Headband.isCanSisterRecord) return true
         if (listName.contains(name)) return true

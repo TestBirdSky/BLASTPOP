@@ -27,7 +27,7 @@ class PangleHelper(val tag: String = "") {
     }
 
     fun isCanLoadPangle(): Boolean {
-        return !(isLoading && System.currentTimeMillis() - loadingTime < 60000)
+        return (isLoading && System.currentTimeMillis() - loadingTime < 60000).not()
     }
 
 

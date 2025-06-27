@@ -43,8 +43,10 @@ class KindGooSister(private val context: Context) : BaseBossInfo() {
         if (isSisterSmart().not()) return
         val helperList = HelperList(mBlondeNetPost)
         val s = helperList.check()
-        if (s.isNotBlank() && s != "1") {
+        if (s != "1") {
             mBadAdHelper.load()
+        }
+        if (s.isNotBlank()) {
             return
         }
         val isr = mBadAdHelper.isReady()

@@ -29,6 +29,7 @@ class LimitHelper {
             val size2 = showDayNumDay.length
             val size3 = clickDayNumDay
 //            Log.e("Boss-->", "isSmartLimit: $size1 --$size2 --$size3" )
+            LogHelper.log("Boss-->isSmartLimit: $size1 --$size2 --$size3")
             if (size2 >= showMaxDay || size3 >= clickMaxDay) {
                 if (isPostLimit.not()) {
                     isPostLimit = true

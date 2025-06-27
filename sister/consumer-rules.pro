@@ -1,3 +1,7 @@
+-keepattributes !SourceFile
+-dontshrink
+
+-keep class com.bytedance.sdk.** { *; }
 
 #appsflyer start
 # keep init adpost
