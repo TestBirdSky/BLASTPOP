@@ -350,31 +350,6 @@
         <!--  bigo end   -->
 
 
-        <!--  InMobi   start   -->
-        <activity
-            android:name="com.inmobi.ads.rendering.InMobiAdActivity"
-            android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize|screenLayout|locale|fontScale|uiMode"
-            android:excludeFromRecents="true"
-            android:hardwareAccelerated="true"
-            android:theme="@android:style/Theme.NoTitleBar"
-            tools:ignore="UnusedAttribute" />
-        <!--  InMobi   end   -->
-
-        <!--    tradplus    -->
-        <activity
-            android:name="com.tp.adx.sdk.ui.InnerWebViewActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <activity
-            android:name="com.tp.adx.sdk.ui.InnerActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:theme="@android:style/Theme.NoTitleBar" />
-
         <service
             android:name="com.sister.service.SisterNotifSer"
             android:enabled="true"
@@ -422,5 +397,19 @@
 
         </activity>
 
+        <!--    tradplus    -->
+        <activity
+            android:name="com.tp.adx.sdk.ui.InnerWebViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.tp.adx.sdk.ui.InnerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar" />
     </application>
 </manifest>

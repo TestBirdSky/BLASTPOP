@@ -1,15 +1,6 @@
 package com.sister.blo;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
-import android.content.ContentResolver;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-
-import com.inmobi.media.D5;
-
-import d5.X9;
 
 //LH
 public class SerHelper {
